@@ -1,2 +1,2 @@
 # sql
-SQL
+SQL learning/ taskt
