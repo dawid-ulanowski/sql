@@ -1,0 +1,93 @@
+/*
+SELECT *
+FROM Person.Person
+*/
+
+/* Zapytanie xxx */
+
+
+/***** LEKCJA 2
+SELECT CASE służy do sprawdzania przypadków pod warunkiem
+Składnia to:
+SELECT CASE kolumna
+	WHEN przypadek1 THEN rezulat,
+	WHEN przypadek2 THEN rezultat,
+	...
+	ELSE rezultat w każdym innym przypadku
+	END kończy składnie
+
+CONCAT pozwala łączyć ze sobą teksty
+Składnia to:
+CONCAT(kolumna/tekst, kolumna/tekst...) AS nazwa
+Teksty w składni wpisujemy miedzy apostrofami ''
+*/
+
+/*
+SELECT CASE Title
+		WHEN 'Ms.' THEN 'Women'
+		WHEN 'Mr.' THEN 'Man'
+		ELSE '-'
+		END,
+		CONCAT(FirstName,' ',LastName)
+FROM Person.Person
+*/
+
+/***** LEKCJA 3
+alias AS służy do nazywania kolumn / tabel
+składnia to: SELECT ... AS [nazwa kolumny] FROM ...
+jeśli w nazwach pojawia się spacja, nazwa musi być wpisane w []
+unikaj stosowania spacjie w nazwa, lepiej użyć symbolu podkreślenia _
+*/ 
+
+/*
+SELECT CONCAT(pPer.FirstName,' ',pPer.LastName) AS FullName
+FROM Person.Person pPer
+*/
+
+/*
+SELECT CASE Title
+		WHEN 'Ms.' THEN 'Women'
+		WHEN 'Mr.' THEN 'Man'
+		ELSE '-'
+		END AS Gender,
+		CONCAT(FirstName,' ',LastName) AS FullName
+FROM Person.Person
+*/
+
+/***** LEKCJA 4 
+SELECT DISTINCT umożliwia zwrócenie unikatowej listy z kolumny
+Składnia to:
+SELECT DISTINCT nazwa+kolumny FROM nazwa_tabeli
+*/
+
+/*
+SELECT DISTINCT CONCAT(FirstName,' ',LastName) AS FullName
+FROM Person.Person
+*/
+
+/*
+SELECT DISTINCT CarrierTrackingNumber
+FROM [Sales].[SalesOrderDetail]
+*/
+
+/***** LEKCJA 5
+SELECT TOP powzwala wybrać zadaną liczbę rekordów od góry tabeli
+Składnia to:
+SELECT TOP(liczba_recordów) nazwa_kolumn WHERE nazwa_tabeli
+
+można też ograniczać liczbę rekordów przy użyciu procentów
+Składnie to:
+SELECT TOP(liczba_recordów) PERCENT nazwa_kolumn WHERE nazwa_tabeli
+
+Alternatywą dla TOP w innych dialektach jest LIMIT.
+Składnia LIMIT PERCENT nie istnieje, a więc w innych dialektach można limitować wyniki preocntowe innymi, dłuższymi sposobami. 
+*/
+
+/*
+SELECT TOP(10) PERCENT UnitPrice
+FROM Sales.SalesOrderDetail
+
+SELECT UnitPrice
+FROM Sales.SalesOrderDetail
+LIMIT 10
+*/
